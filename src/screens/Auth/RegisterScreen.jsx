@@ -50,6 +50,7 @@ export default function RegisterScreen({ navigation }) {
     try {
       // El backend no crea la cuenta todavía: manda un código de verificación
       // al correo y la cuenta se crea recién cuando se confirma ese código.
+      console.log(email, "Email en:")
       await registrarse(nombre.trim(), email.trim(), password);
       navigation.navigate("VerifyCode", {
         email: email.trim(),

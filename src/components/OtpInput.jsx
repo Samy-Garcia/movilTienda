@@ -3,7 +3,7 @@ import React, { useRef } from "react";
 import { View, TextInput, StyleSheet } from "react-native";
 import { colors } from "../style/colors";
 
-const LONGITUD_CODIGO = 4;
+const LONGITUD_CODIGO = 6;
 
 export default function OtpInput({ codigo, onChangeCodigo }) {
   const referencias = useRef([]);
@@ -33,7 +33,8 @@ export default function OtpInput({ codigo, onChangeCodigo }) {
           ref={(ref) => (referencias.current[indice] = ref)}
           style={styles.casilla}
           maxLength={1}
-          keyboardType="number-pad"
+          keyboardType="default"
+          autoCapitalize="none"
           value={codigo[indice] || ""}
           onChangeText={(texto) => manejarCambio(texto, indice)}
           onKeyPress={(evento) => manejarBorrado(evento, indice)}
@@ -47,13 +48,13 @@ const styles = StyleSheet.create({
   fila: {
     flexDirection: "row",
     justifyContent: "center",
-    gap: 14,
+    gap: 8,
     marginVertical: 24,
   },
   casilla: {
-    width: 56,
-    height: 56,
-    borderRadius: 28,
+    width: 44,
+    height: 52,
+    borderRadius: 10,
     borderWidth: 1,
     borderColor: colors.inputBorder,
     textAlign: "center",

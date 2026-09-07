@@ -39,6 +39,7 @@ export function AuthProvider({ children }) {
 
   // Paso 1: pide el registro (el backend manda el código por correo).
   async function registrarse(nombre, email, password) {
+    console.log("Valores de registro: ", email)
     return registerRequest({ nombre, email, password });
   }
 

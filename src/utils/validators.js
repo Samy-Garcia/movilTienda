@@ -19,5 +19,5 @@ export function esCampoRequeridoValido(valor) {
 }
 
 export function esCodigoOtpValido(codigo) {
-  return /^\d{4}$/.test(codigo);
+  return /^[0-9a-fA-F]{6}$/.test(codigo);
 }
