@@ -1,9 +1,6 @@
 // src/api/config.js
-// Backend real: LOW-WebClients (Node/Express + MongoDB), corre en localhost:4000 en desarrollo.
-//   - Emulador Android: usa 10.0.2.2 en vez de localhost
-//   - Dispositivo físico: usa la IP local de tu PC, ej. http://192.168.1.10:4000
-//   - Cuando esté desplegado en Render, cambia esto por esa URL (https://...onrender.com)
-export const API_URL = "http://10.0.2.2:4000";
+// Backend real: LOW-WebClients (Node/Express + MongoDB), desplegado en Render.
+export const API_URL = "https://low-webclients.onrender.com";
 
 export const ENDPOINTS = {
   LOGIN: "/api/loginClient",

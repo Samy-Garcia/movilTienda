@@ -5,6 +5,7 @@ import InputField from "../../components/InputField";
 import PrimaryButton from "../../components/PrimaryButton";
 import SocialLoginRow from "../../components/SocialLoginRow";
 import { useAuth } from "../../hooks/useAuth";
+import { ApiError } from "../../api/client";
 import {
   esCorreoValido,
   esContrasenaValida,
@@ -56,7 +57,15 @@ export default function RegisterScreen({ navigation }) {
         datosRegistro: { nombre: nombre.trim(), email: email.trim(), password },
       });
     } catch (error) {
-      Alert.alert("No se pudo crear la cuenta", "Ese correo ya podría estar registrado, o intenta de nuevo más tarde.");
+      if (error instanceof ApiError && error.status === 400) {
+        Alert.alert("No se pudo crear la cuenta", "Ese correo ya está registrado.");
+      } else if (error instanceof ApiError && error.status === 0) {
+        Alert.alert("Sin conexión", "No se pudo conectar con el servidor. Revisa tu internet.");
+      } else if (error instanceof ApiError) {
+        Alert.alert("No se pudo crear la cuenta", error.message);
+      } else {
+        Alert.alert("No se pudo crear la cuenta", "Intenta de nuevo más tarde.");
+      }
     } finally {
       setCargando(false);
     }
